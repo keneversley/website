@@ -19,4 +19,20 @@ function myFunction() {
         minute.style.transform = `rotate(${min_rotation}deg)`;
         second.style.transform = `rotate(${sec_rotation}deg)`;
     }, 1000);
-    
+
+    // WEATHER
+
+    var searchBtn = document.querySelector('#searchbtn');
+searchbtn.addEventListener('click', function(event) {
+    var search = document.querySelector('#searchinput').value;
+    fetch('https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q='+ search +'&appid=2fa1434af29e0e9fa3a04760d43111ce&units=imperial') 
+
+.then(function(res){
+    return res.json();
+})
+.then(function(data){
+    console.log(data);
+    document.querySelector('#searchresults').textContent =data.main.temp;
+}) 
+
+})
